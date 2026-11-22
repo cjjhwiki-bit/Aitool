@@ -19,14 +19,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 由 GitHub 直接安裝 Gradle，不需要專案內有 gradlew
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
           cache-provider: basic
-          gradle-version: '9.3.1' # 支援多數 AGP 8.x 專案；若使用 AGP 9.x 請改為 'current'
+          gradle-version: '9.3.1'
 
-      # 直接呼叫系統安裝好的 gradle 來打包
+      # 現場產生 debug.keystore 到專案根目錄
+      - name: Generate temporary debug keystore
+        run: |
+          keytool -genkeypair -v -keystore debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+
       - name: Build Debug APK
         run: gradle assembleDebug
 
