@@ -24,7 +24,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
         with:
           cache-provider: basic
-          gradle-version: '8.14' # 支援多數 AGP 8.x 專案；若使用 AGP 9.x 請改為 'current'
+          gradle-version: '9.3.1' # 支援多數 AGP 8.x 專案；若使用 AGP 9.x 請改為 'current'
 
       # 直接呼叫系統安裝好的 gradle 來打包
       - name: Build Debug APK
