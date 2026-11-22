@@ -1,0 +1,8 @@
+{
+  "name": "Remix PolyChat 智模工作站",
+  "description": "Local-First BYOK Android 多模型 AI 聚合與實驗工作站，支援單聊、併發對比、AI 圓桌互聊、429 跨供應商自動容錯與全參數控制。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">PolyChat 智模工作站</string>
+    <string name="mode_single">普通對話</string>
+    <string name="mode_parallel">多模型對比</string>
+    <string name="mode_roundtable">AI 圓桌互聊</string>
+    <string name="nav_settings">供應商設定</string>
+    <string name="nav_parameters">參數中心</string>
+    <string name="nav_search_export">搜尋與匯出入</string>
+    <string name="nav_new_chat">新對話</string>
+    <string name="action_send">傳送</string>
+    <string name="action_stop">停止</string>
+    <string name="action_save">儲存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_delete">刪除</string>
+    <string name="action_copy">複製</string>
+    <string name="action_edit">編輯</string>
+    <string name="action_regenerate">重新生成</string>
+    <string name="action_fork">從此分岔</string>
+    <string name="cd_open_drawer">開啟對話側邊欄</string>
+    <string name="cd_open_model_menu">開啟統一模型與模式選單</string>
+    <string name="cd_open_params">開啟即時參數抽屜</string>
+    <string name="cd_open_settings">開啟供應商設定</string>
+    <string name="cd_probe_model">單獨測速模型</string>
+    <string name="cd_send_message">傳送訊息</string>
+    <string name="cd_stop_streaming">停止生成</string>
+</resources>
