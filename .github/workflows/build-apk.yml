@@ -2,43 +2,37 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main", "master" ] # 當推送到 main 或 master 分支時自動觸發
-  workflow_dispatch:               # 允許在 GitHub 網頁手動點擊按鈕觸發
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 拉取專案程式碼
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      # 2. 安裝 Java 環境 (現代 Android 專案通常需要 JDK 17 或 21)
       - name: Set up JDK 17
         uses: actions/setup-java@v6
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3. 設定 Gradle 與快取 (加速後續編譯)
+      # 由 GitHub 直接安裝 Gradle，不需要專案內有 gradlew
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          cache-provider: basic # 免費且適用於公開與私人專案
+          cache-provider: basic
+          gradle-version: '8.14' # 支援多數 AGP 8.x 專案；若使用 AGP 9.x 請改為 'current'
 
-      # 4. 賦予 gradlew 執行權限 (避免 Linux 環境權限不足錯誤)
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      # 5. 執行打包指令 (Debug 版)
+      # 直接呼叫系統安裝好的 gradle 來打包
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
 
-      # 6. 上傳產出的 APK
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/*.apk
-          archive: false # 直接上傳未壓縮的 APK，不用再下載解壓 zip
+          path: "**/build/outputs/apk/debug/*.apk"
+          archive: false
